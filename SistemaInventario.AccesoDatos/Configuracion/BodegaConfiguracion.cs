@@ -13,7 +13,7 @@ namespace SistemaInventario.AccesoDatos.Configuracion
     {
         public void Configure(EntityTypeBuilder<Bodega> builder)
         {
-            throw new NotImplementedException();
+          
             builder.Property(x => x.Id).IsRequired();
             builder.Property(x => x.Nombre).IsRequired().HasMaxLength(60);
             builder.Property(x => x.Descripcion).IsRequired().HasMaxLength(100);
