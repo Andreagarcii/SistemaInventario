@@ -1,23 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SistemaInventario.Modelos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaInventario.AccesoDatos.Configuracion
+namespace SistemaInventario.AccesoDatos.Repositorio.IRepositorio
 {
-    public class BodegaConfiguracion : IEntityTypeConfiguration<Bodega>
+    public interface Irepositorio<T> where T : class
     {
-        public void Configure(EntityTypeBuilder<Bodega> builder)
-        {
-          
-            builder.Property(x => x.Id).IsRequired();
-            builder.Property(x => x.Nombre).IsRequired().HasMaxLength(60);
-            builder.Property(x => x.Descripcion).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Estado).IsRequired();
-        }
+        Task<T> obtener(int id);
+        Task<IEnumerable<T>> ObtenerTodos(
+            Expression<Func<T, bool>> filtro = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            string incluirPropiedades = null,
+            bool IsTracking = true
+            );
+
+        Task<T> ObtenerPrimero(
+            Expression<Func<T, bool>> filtro = null,
+            string incluirPropiedades = null,
+            bool IsTracking = true
+            );
+
+        Task Agregar(T entidad);
+        void Remove(T entidad);
+        void RemoverRango(IEnumerable<T> entidad);
     }
 }

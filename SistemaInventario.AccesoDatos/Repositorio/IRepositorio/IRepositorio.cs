@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SistemaInventario.AccesoDatos.Repositorio.IRepositorio
 {
-    public interface IRepositorio<T> where T : class
+    public interface IRpositorio<T> where T : class
     {
         Task<T> obtener(int id);
-        IEnumerable<T> ObtenerTodosAsync(
+        Task <IEnumerable<T>> ObtenerTodos(
             Expression<Func<T, bool>> filtro = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string incluirPropiedades = null,

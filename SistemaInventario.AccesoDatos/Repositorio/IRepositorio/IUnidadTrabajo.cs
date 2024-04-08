@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaInventario.AccesoDatos.Repositorio.IRepositorio.Ireposorio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SistemaInventario.AccesoDatos.Repositorio.IRepositorio
 {
-    public interface IUnidadTrabajo : IDisposable
+    public interface IUnidadTrabajo: IDisposable
     {
-        IBodegaRepositorio Bodega { get; }
+        IBodegaRepositorio Bodega {  get; }
 
         Task Guardar();
 
